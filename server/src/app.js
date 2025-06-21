@@ -5,6 +5,8 @@ import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import { authRouter } from "./routes/auth.routes.js";
 import { protectedRouter } from "./routes/protected.routes.js";
+import swaggerUi from 'swagger-ui-express';
+import { specs } from "./config/swagger.config.js";
 
 
 
@@ -20,6 +22,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes will be added here
+
+// Swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 app.use("/api/auth", authRouter);
 app.use("/api/protected", protectedRouter);
