@@ -83,11 +83,7 @@ public/uploads/
 public/temp/
 
 # Backend specific
-server/.env
-server/.env.*
-!server/.env.example
-server/build/
-server/dist/
+server/
 
 # IDE specific
 .idea/
