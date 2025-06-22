@@ -13,9 +13,9 @@ export default function ErrorShell({ children, showBanner = true }) {
     <div className="min-h-screen bg-[#FAFAFA]">
       {/* ---------- top banner ---------- */}
       {showBanner && (
-        <div className="bg-teal-600 relative h-[174px] w-full border-b">
+        <div className="bg-black relative h-[174px] w-full border-b">
           {/* gradient strip */}
-          <div className="h-full w-full bg-gradient-to-r from-brandMint via-brandDark to-brandMint" />
+          <div className="h-full w-full bg-gradient-to-r from-emerald-600 via-black to-emerald-600" />
 
           {/* illustration pushed far right */}
           <Image
