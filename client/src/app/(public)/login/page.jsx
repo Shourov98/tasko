@@ -33,14 +33,14 @@ export default function LoginPage() {
   return (
     <main className="flex min-h-screen bg-[#FAFAFA]">
       {/* ----------  left Illustration panel (hidden below lg) ---------- */}
-      <aside className="bg-teal-900 relative hidden w-1/2 overflow-hidden lg:block">
+      <aside className="bg-black relative hidden w-1/2 overflow-hidden lg:block">
         {/* base dark background */}
         <div className="absolute inset-0 bg-brandDark" />
 
         {/* mint blurs */}
-        <div className="absolute -left-32 -top-14 h-60 w-56 rounded-full bg-brandMint blur-[150px] opacity-70" />
-        <div className="absolute left-20 bottom-24 h-24 w-[32rem] rounded-full bg-brandMint blur-[200px] opacity-70" />
-        <div className="absolute left-96 bottom-10 h-64 w-64 rounded-full bg-brandMint blur-[150px] opacity-70" />
+        <div className="absolute -left-32 -top-14 h-60 w-66 rounded-full bg-teal-600 blur-[150px] opacity-70" />
+        <div className="absolute left-20 bottom-24 h-24 w-[40rem] rounded-full bg-teal-600 blur-[200px] opacity-70" />
+        <div className="absolute left-96 bottom-10 h-64 w-70 rounded-full bg-teal-600 blur-[150px] opacity-70" />
 
         {/* roadmap illustration */}
         <Image
