@@ -57,4 +57,28 @@ taskRouter.post("/", validateTaskCreate, createTaskCtrl);
  */
 taskRouter.patch("/:id", validateTaskUpdate, updateTaskCtrl);
 
+/**
+ * @swagger
+ * /api/tasks/{id}:
+ *   delete:
+ *     security: [{ cookieAuth: [] }]
+ *     summary: Delete a task
+ *     description: Delete a task by its ID. Only the owner of the task can delete it.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Task ID to delete
+ *     responses:
+ *       204:
+ *         description: Task deleted successfully
+ *       400:
+ *         description: Invalid task ID or task not found
+ *       401:
+ *         description: Unauthorized - must be authenticated
+ *       403:
+ *         description: Forbidden - user is not the owner of the task
+ */
 taskRouter.delete("/:id", deleteTaskCtrl);
