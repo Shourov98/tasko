@@ -104,8 +104,6 @@ taskRouter.get("/", listTasksCtrl);
  *         description: Unauthorized - user must be logged in
  *       403:
  *         description: Forbidden - user cannot create tasks for other users
- *             type: object
- *             required: [category, description, date]
  */
 taskRouter.post("/", validateTaskCreate, createTaskCtrl);
 

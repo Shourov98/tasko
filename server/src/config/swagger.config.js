@@ -4,9 +4,9 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Softvence API Documentation',
+      title: 'Tasko API Documentation',
       version: '1.0.0',
-      description: 'API documentation for Softvence backend services',
+      description: 'API documentation for Tasko backend services',
     },
     servers: [
       {
