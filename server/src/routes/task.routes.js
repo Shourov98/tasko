@@ -33,11 +33,77 @@ taskRouter.get("/", listTasksCtrl);
  *   post:
  *     security: [{ cookieAuth: [] }]
  *     summary: Create a new task
+ *     description: Create a new task for the authenticated user. The task will be automatically associated with the current user.
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
+ *             type: object
+ *             required: [category, description, date]
+ *             properties:
+ *               category:
+ *                 type: string
+ *                 enum: ["Arts & Crafts", "Nature", "Family", "Sport", "Friends", "Meditation"]
+ *                 description: Category of the task
+ *                 example: "Nature"
+ *               description:
+ *                 type: string
+ *                 maxLength: 100
+ *                 description: Description of the task
+ *                 example: "Go for a morning walk in the park"
+ *               date:
+ *                 type: string
+ *                 format: date
+ *                 description: Date when the task should be completed
+ *                 example: "2025-06-25"
+ *               status:
+ *                 type: string
+ *                 enum: ["Pending", "In Progress", "Done"]
+ *                 description: Initial status of the task (defaults to "Pending" if not provided)
+ *                 example: "Pending"
+ *     responses:
+ *       201:
+ *         description: Task created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 _id:
+ *                   type: string
+ *                   description: Unique identifier of the created task
+ *                 category:
+ *                   type: string
+ *                 description:
+ *                   type: string
+ *                 date:
+ *                   type: string
+ *                 status:
+ *                   type: string
+ *                 ownerId:
+ *                   type: string
+ *                   description: ID of the task owner (current user)
+ *                 createdAt:
+ *                   type: string
+ *                   format: date-time
+ *                 updatedAt:
+ *                   type: string
+ *                   format: date-time
+ *       400:
+ *         description: Invalid input data
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   description: Error message describing the validation failure
+ *       401:
+ *         description: Unauthorized - user must be logged in
+ *       403:
+ *         description: Forbidden - user cannot create tasks for other users
  *             type: object
  *             required: [category, description, date]
  */
