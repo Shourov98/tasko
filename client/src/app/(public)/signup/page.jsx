@@ -42,9 +42,9 @@ export default function SignupPage() {
         <div className="absolute inset-0 bg-brandDark" />
 
         {/* Mint blurs */}
-        <div className="absolute -left-32 -top-14 h-60 w-70 rounded-full bg-teal-500 blur-[150px] opacity-70 pointer-events-none" />
-        <div className="absolute left-20 bottom-24 h-24 w-[40rem] rounded-full bg-teal-500 blur-[200px] opacity-70 pointer-events-none" />
-        <div className="absolute left-96 bottom-10 h-64 w-70 rounded-full bg-teal-500 blur-[150px] opacity-70 pointer-events-none" />
+        <div className="absolute -left-32 -top-14 h-60 w-70 rounded-full bg-teal-400 blur-[150px] opacity-70 pointer-events-none" />
+        <div className="absolute left-20 bottom-24 h-24 w-[40rem] rounded-full bg-teal-400 blur-[200px] opacity-70 pointer-events-none" />
+        <div className="absolute left-96 bottom-10 h-64 w-70 rounded-full bg-teal-400 blur-[150px] opacity-70 pointer-events-none" />
 
         {/* Illustration PNG */}
         <Image
@@ -135,7 +135,7 @@ export default function SignupPage() {
           {/* submit */}
           <Button
             type="submit"
-            className="h-[60px] w-full rounded-[8px] bg-teal-500 font-semibold text-textHead hover:bg-teal-400"
+            className="h-[60px] w-full rounded-[8px] bg-emerald-400 font-semibold text-textHead hover:bg-emerald-300"
           >
             Sign Up
           </Button>

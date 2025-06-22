@@ -38,9 +38,9 @@ export default function LoginPage() {
         <div className="absolute inset-0 bg-brandDark" />
 
         {/* mint blurs */}
-        <div className="absolute -left-32 -top-14 h-60 w-66 rounded-full bg-teal-600 blur-[150px] opacity-70" />
-        <div className="absolute left-20 bottom-24 h-24 w-[40rem] rounded-full bg-teal-600 blur-[200px] opacity-70" />
-        <div className="absolute left-96 bottom-10 h-64 w-70 rounded-full bg-teal-600 blur-[150px] opacity-70" />
+        <div className="absolute -left-32 -top-14 h-60 w-66 rounded-full bg-teal-400 blur-[150px] opacity-70" />
+        <div className="absolute left-20 bottom-24 h-24 w-[40rem] rounded-full bg-teal-400 blur-[200px] opacity-70" />
+        <div className="absolute left-96 bottom-10 h-64 w-70 rounded-full bg-teal-400 blur-[150px] opacity-70" />
 
         {/* roadmap illustration */}
         <Image
