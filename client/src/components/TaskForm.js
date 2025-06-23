@@ -2,7 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { taskSchema } from "@/schemas/taskSchema";
+import { createTaskSchema, editTaskSchema } from "@/schemas/taskSchema";
 import { toast } from "sonner";
 
 const CATEGORIES = [
@@ -23,7 +23,7 @@ export default function TaskForm({ mode = "create", initial = {}, onSubmit }) {
     formState: { errors, isSubmitting },
     watch,
   } = useForm({
-    resolver: zodResolver(taskSchema),
+    resolver: zodResolver(mode === "create" ? createTaskSchema : editTaskSchema),
     defaultValues: {
       category: initial.category || "",
       description: initial.description || "",
