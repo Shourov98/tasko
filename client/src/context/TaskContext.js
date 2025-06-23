@@ -5,7 +5,7 @@ import api from "@/lib/api";
 const TaskCtx = createContext();
 export const useTasks = () => useContext(TaskCtx);
 
-const initial = { list: [], loading: true, error: null };
+const initial = { list: [], loading: true, error: null, filter: null };
 
 function reducer(state, action) {
   switch (action.type) {
