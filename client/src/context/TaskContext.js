@@ -20,6 +20,8 @@ function reducer(state, action) {
       };
     case "DELETE":
       return { ...state, list: state.list.filter((t) => t.id !== action.payload) };
+    case "SET_FILTER":
+      return { ...state, filter: action.payload };
     default:
       return state;
   }
@@ -53,8 +55,10 @@ export function TaskProvider({ children }) {
 
   const getTask = (id) => state.list.find((t) => t.id === id);
 
+  const setFilter = (payload) => dispatch({ type: "SET_FILTER", payload }); 
+
   return (
-    <TaskCtx.Provider value={{ ...state, createTask, updateTask, deleteTask, getTask }}>
+    <TaskCtx.Provider value={{ ...state, createTask, updateTask, deleteTask, getTask, setFilter }}>
       {children}
     </TaskCtx.Provider>
   );
