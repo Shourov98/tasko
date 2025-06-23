@@ -9,7 +9,7 @@ export default function DashboardBanner() {
 
       {/* dashboard illustration pushed up 63 px */}
       <Image
-        src="/banners/dashboard-illus.png"
+        src="/login/roadmap.png"
         alt=""
         width={448}
         height={335}

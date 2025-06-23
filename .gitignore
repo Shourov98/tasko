@@ -78,11 +78,7 @@ out/
 # Production
 build/
 
-# Frontend specific
-client/
 
-# Backend specific
-server/
 
 # IDE specific
 .idea/

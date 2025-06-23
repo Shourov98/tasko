@@ -2,10 +2,10 @@ import Link from "next/link";
 import { IoMdStopwatch } from "react-icons/io";
 import { FaClipboardList } from "react-icons/fa6";
 import { PiSpinnerBallBold } from "react-icons/pi";
-import { useAuthContext } from "@/context/AuthContext";
+import useAuth from "@/hooks/useAuth";
 
 export default function Navbar() {
-  //const { user } = useAuthContext();
+  const { user, logout } = useAuth();
 
   return (
     <header className="fixed inset-x-0 top-0 z-20 flex items-center justify-between px-12 py-10">

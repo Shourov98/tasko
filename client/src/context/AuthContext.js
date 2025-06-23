@@ -1,77 +1,82 @@
 "use client";
-
 import { createContext, useContext, useEffect, useReducer } from "react";
+import { useRouter } from "next/navigation";
 import api from "@/lib/api";
 
-/* ----------   state & reducer   ---------- */
-const initialState = {
-  user: null,          // { id, fullName, email, points }
-  loading: true,       // true until we finish the boot refresh
-  error: null,
-};
+/* ----------  state & reducer  ---------- */
+const initial = { user: null, loading: true, error: null };
 
-function reducer(state, action) {
-  switch (action.type) {
-    case "BOOT_SUCCESS":
-      return { ...state, user: action.payload, loading: false };
+function reducer(state, { type, payload }) {
+  switch (type) {
+    case "BOOT_OK":
+    case "LOGIN_OK":
+      return { ...state, user: payload, loading: false };
     case "BOOT_FAIL":
-      return { ...state, user: null, loading: false };
-    case "LOGIN_SUCCESS":
-      return { ...state, user: action.payload, loading: false };
     case "LOGOUT":
-      return { ...state, user: null };
+      return { ...state, user: null, loading: false };
     case "UPDATE_POINTS":
-      return { ...state, user: { ...state.user, points: action.payload } };
+      return { ...state, user: { ...state.user, points: payload } };
     default:
       return state;
   }
 }
 
-/* ----------   context wrapper   ---------- */
-const AuthContext = createContext();
+/* ----------  context + refs  ---------- */
+const AuthCtx = createContext(initial);
+let externalLogout = () => {};          // filled inside provider
 
 export function AuthProvider({ children }) {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initial);
+  const router = useRouter();
 
-  // 1) run once on mount: try refresh
+  /* ----------  boot: try refresh cookie  ---------- */
   useEffect(() => {
     (async () => {
       try {
         const { data } = await api.post("/api/auth/refresh");
-        dispatch({ type: "BOOT_SUCCESS", payload: data });
+        dispatch({ type: "BOOT_OK", payload: data });
       } catch {
         dispatch({ type: "BOOT_FAIL" });
       }
     })();
   }, []);
 
-  /* ---------- auth helper functions ---------- */
-  const login = async (values) => {
-    const { data } = await api.post("/api/auth/login", values);
-    dispatch({ type: "LOGIN_SUCCESS", payload: data });
+  /* ----------  helpers  ---------- */
+  const login = async (body) => {
+    const { data } = await api.post("/api/auth/login", body);
+    dispatch({ type: "LOGIN_OK", payload: data });
+    router.push("/dashboard");
   };
 
-  const signup = async (values) => {
-    const { data } = await api.post("/api/auth/signup", values);
-    dispatch({ type: "LOGIN_SUCCESS", payload: data });
+  const signup = async (body) => {
+    const { data } = await api.post("/api/auth/signup", body);
+    dispatch({ type: "LOGIN_OK", payload: data });
+    router.push("/dashboard");
   };
 
   const logout = async () => {
-    await api.post("/api/auth/logout");
-    dispatch({ type: "LOGOUT" });
+    try {
+      await api.post("/api/auth/logout");
+    } finally {
+      dispatch({ type: "LOGOUT" });
+      router.push("/login");
+    }
   };
 
-  const updatePoints = (points) =>
-    dispatch({ type: "UPDATE_POINTS", payload: points });
+  const updatePoints = (pts) => dispatch({ type: "UPDATE_POINTS", payload: pts });
+
+  /* expose logout to non-React code */
+  externalLogout = logout;
 
   return (
-    <AuthContext.Provider
-      value={{ ...state, login, signup, logout, updatePoints }}
-    >
+    <AuthCtx.Provider value={{ ...state, login, signup, logout, updatePoints }}>
       {children}
-    </AuthContext.Provider>
+    </AuthCtx.Provider>
   );
 }
 
-/* small helper hook */
-export const useAuthContext = () => useContext(AuthContext);
+/* ----------  hooks & plain helpers  ---------- */
+export const useAuth = () => useContext(AuthCtx);
+
+/* call this from Axios interceptors, worker scripts, etc. */
+export const authLogout = () => externalLogout();
