@@ -79,8 +79,7 @@ out/
 build/
 
 # Frontend specific
-public/uploads/
-public/temp/
+client/
 
 # Backend specific
 server/
