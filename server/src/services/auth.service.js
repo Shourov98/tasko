@@ -38,10 +38,9 @@ export function issueTokens(res, user, rememberMe = false) {
   const access = makeAccessToken(user);
   res.cookie('accessToken', access, ACCESS_COOKIE_OPTS);
 
-  if (rememberMe) {
-    const refresh = makeRefreshToken(user);
-    res.cookie('refreshToken', refresh, REFRESH_COOKIE_OPTS);
-  }
+  const refresh = makeRefreshToken(user);
+  res.cookie('refreshToken', refresh, REFRESH_COOKIE_OPTS);
+
 }
 
 export function clearAuthCookies(res) {
