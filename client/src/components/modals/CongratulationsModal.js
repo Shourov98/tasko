@@ -20,7 +20,7 @@ export default function CongratulationsModal({ open, onClose }) {
       >
         {/* fireworks illustration */}
         <Image
-          src="/modals/congrats.png" // put your illustration here
+          src="/congratulation.png" 
           alt="Congratulations"
           width={300}
           height={180}
