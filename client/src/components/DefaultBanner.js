@@ -10,8 +10,8 @@ export default function DefaultBanner() {
       <Image
         src="/login/roadmap.png"
         alt=""
-        width={448}
-        height={335}
+        width={350}
+        height={250}
         className="absolute -right-10 -top-[63px] hidden md:block pointer-events-none select-none mix-blend-soft-light"
         priority
       />
