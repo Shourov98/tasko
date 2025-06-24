@@ -36,37 +36,39 @@ export default function Dashboard() {
         </h2>
 
         {/* sticky filter bar */}
-        <div className="sticky top-0 z-10 flex flex-wrap items-center gap-4 bg-white py-4">
+        <div className="sticky top-0 z-10 flex flex-wrap justify-between items-center gap-4 bg-white py-4 px-6">
           <h3 className="text-lg font-semibold">All Task List</h3>
 
-          <select
-            value={catFilter}
-            onChange={(e) => setCat(e.target.value)}
-            className="h-10 rounded border px-3 text-sm"
-          >
-            <option value="">All Categories</option>
-            {categories.map((c) => (
-              <option key={c}>{c}</option>
-            ))}
-          </select>
+          <div className="flex items-center justify-between gap-4">
+            <select
+              value={catFilter}
+              onChange={(e) => setCat(e.target.value)}
+              className="h-10 rounded border px-3 text-sm"
+            >
+              <option value="">All Categories</option>
+              {categories.map((c) => (
+                <option key={c}>{c}</option>
+              ))}
+            </select>
 
-          <select
-            value={statusFilter}
-            onChange={(e) => setStat(e.target.value)}
-            className="h-10 rounded border px-3 text-sm"
-          >
-            <option value="">All Tasks</option>
-            <option>Pending</option>
-            <option>In Progress</option>
-            <option>Done</option>
-          </select>
+            <select
+              value={statusFilter}
+              onChange={(e) => setStat(e.target.value)}
+              className="h-10 rounded border px-3 text-sm"
+            >
+              <option value="">All Tasks</option>
+              <option>Pending</option>
+              <option>In Progress</option>
+              <option>Done</option>
+            </select>
 
-          <button
-            onClick={() => {/* open create modal */}}
-            className="ml-auto rounded bg-brandMint px-6 py-2 font-medium text-textHead hover:opacity-90"
-          >
-            + Add New Task
-          </button>
+            <button
+              onClick={() => {/* open create modal */}}
+              className="ml-auto rounded bg-emerald-500 px-6 py-2 font-medium text-textHead hover:bg-emerald-300"
+            >
+              + Add New Task
+            </button>
+          </div>
         </div>
 
         {/* task grid */}
