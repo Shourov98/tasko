@@ -21,7 +21,7 @@ export default function TaskDetails() {
 
   /* 1️⃣  load from context (or 404) */
   useEffect(() => {
-    const t = getTask(_id);
+    const t = getTask(id);
     if (t) {
       setTask(t);
       setStatus(t.status);

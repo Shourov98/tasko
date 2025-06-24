@@ -26,11 +26,13 @@ export default function SignupPage() {
   });
 
   const onSubmit = async (vals) => {
+    console.log("FORM SUBMITTED:", vals);
     try {
       await signup(vals);
       toast.success("Account created!");
       window.location.href = "/dashboard";
     } catch (err) {
+      console.log(err);
       toast.error(err.response?.data?.message || "Signup failed");
     }
   };
@@ -124,11 +126,11 @@ export default function SignupPage() {
             <Input
               type="password"
               placeholder="Retype password"
-              {...register("confirm")}
+              {...register("confirmPassword")}
               className="h-12 border border-[#E1E1E1] shadow-[0_1px_3px_rgba(0,0,0,0.12)]"
             />
-            {errors.confirm && (
-              <p className="text-sm text-red-500">{errors.confirm.message}</p>
+            {errors.confirmPassword && (
+              <p className="text-sm text-red-500">{errors.confirmPassword.message}</p>
             )}
           </div>
 

@@ -5,11 +5,11 @@ export const signupSchema = z
     fullName: z.string().min(2, "Name is too short"),
     email:    z.string().email("Invalid email"),
     password: z.string().min(6, "Min 6 chars"),
-    confirm:  z.string(),
+    confirmPassword:  z.string(),
   })
-  .refine((data) => data.password === data.confirm, {
+  .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords don’t match",
-    path: ["confirm"],
+    path: ["confirmPassword"],
   });
 
 export const loginSchema = z.object({
