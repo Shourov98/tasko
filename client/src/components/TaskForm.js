@@ -125,7 +125,7 @@ export default function TaskForm({ mode = "create", initial = {}, onSubmit }) {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="rounded bg-brandMint px-8 py-2 text-sm font-medium text-textHead hover:opacity-90 disabled:opacity-60"
+          className="rounded bg-emerald-500 px-8 py-2 text-sm font-medium text-textHead hover:bg-emerald-300 cursor-pointer disabled:opacity-60"
         >
           {isSubmitting ? "Saving…" : mode === "create" ? "Create Task" : "Save Changes"}
         </button>
