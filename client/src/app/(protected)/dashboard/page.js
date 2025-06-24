@@ -74,7 +74,7 @@ export default function Dashboard() {
           {filtered.length ? (
             <div className="grid auto-rows-[1fr] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {filtered.map((t) => (
-                <TaskCard key={t.id} task={t} />
+                <TaskCard key={t._id} task={t} />
               ))}
             </div>
           ) : (

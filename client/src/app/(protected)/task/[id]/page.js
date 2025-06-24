@@ -22,12 +22,13 @@ export default function TaskDetails() {
   /* 1️⃣  load from context (or 404) */
   useEffect(() => {
     const t = getTask(id);
+    console.log(t);
     if (t) {
       setTask(t);
       setStatus(t.status);
     } else {
       toast.error("Task not found");     // could also fetch-on-demand
-      router.back();
+      router.push("/dashboard");
     }
   }, [id]);
 
