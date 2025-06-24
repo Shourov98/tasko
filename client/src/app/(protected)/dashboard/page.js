@@ -1,9 +1,10 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import DashboardBanner from "@/components/DashboardBanner";
 import { useTasks } from "@/context/TaskContext";
 import TaskCard from "@/components/TaskCard";
-import Image from "next/image";
 
 export default function Dashboard() {
   const { list } = useTasks();          // ← replace with props you exposed
@@ -62,12 +63,9 @@ export default function Dashboard() {
               <option>Done</option>
             </select>
 
-            <button
-              onClick={() => {/* open create modal */}}
-              className="ml-auto rounded bg-emerald-500 px-6 py-2 font-medium text-textHead hover:bg-emerald-300"
-            >
+            <Link href="/task/new" className="ml-auto rounded bg-emerald-500 px-6 py-2 font-medium text-textHead hover:bg-emerald-300">
               + Add New Task
-            </button>
+            </Link>
           </div>
         </div>
 
