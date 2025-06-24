@@ -53,7 +53,7 @@ export function TaskProvider({ children }) {
     dispatch({ type: "DELETE", payload: id });
   };
 
-  const getTask = (id) => state.list.find((t) => t.id === id);
+  const getTask = (id) => state.list.find((t) => t._id === id);
 
   const setFilter = (payload) => dispatch({ type: "SET_FILTER", payload }); 
 

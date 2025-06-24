@@ -22,7 +22,7 @@ export default function TaskDetails() {
   /* 1️⃣  load from context (or 404) */
   useEffect(() => {
     const t = getTask(id);
-    console.log(t);
+    console.log(id);
     if (t) {
       setTask(t);
       setStatus(t.status);
@@ -46,7 +46,7 @@ export default function TaskDetails() {
     e.stopPropagation();
     await deleteTask(task._id);
     toast.success("Task deleted");
-    router.back();
+    router.push("/dashboard");
   }
 
   /* ✅ submit status change */
@@ -114,15 +114,15 @@ export default function TaskDetails() {
           <div className="flex flex-1 flex-col gap-6">
             <div>
               <h3 className="mb-1 text-2xl font-semibold">{task.category}</h3>
-              <p className="max-w-3xl text-sm leading-relaxed text-textBody">
+              <p className="max-w-3xl text-lg pt-3 leading-relaxed text-textBody">
                 {task.description}
               </p>
             </div>
 
             <div className="flex flex-wrap items-center gap-6 text-sm">
-              <div className="flex items-center gap-2">
-                <Calendar size={18} />
-                <span>
+              <div className="flex items-center px-2 gap-2">
+                <Calendar size={25} />
+                <span className="text-lg">
                   {new Date(task.date).toLocaleDateString("en-US", {
                     weekday: "long",
                     month: "long",
@@ -132,7 +132,7 @@ export default function TaskDetails() {
                 </span>
               </div>
 
-              <span className={`flex items-center gap-2 ${pill[status]}`}>
+              <span className={`flex items-center text-lg gap-2 ${pill[status]}`}>
                 • {status}
               </span>
             </div>
