@@ -8,6 +8,8 @@ import { toast } from "sonner";
 import TopBanner from "@/components/TopBanner";
 import { useTasks } from "@/context/TaskContext";
 import { useAuth } from "@/context/AuthContext";
+import CongratulationsModal from "@/components/modals/CongratulationsModal";
+import DeleteConfirmModal from "@/components/modals/DeleteConfirmModal";
 
 export default function TaskDetails() {
   const { id } = useParams();              // /task/[id]
@@ -18,6 +20,8 @@ export default function TaskDetails() {
   const [task, setTask]   = useState(null);
   const [status, setStatus] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [showCongrets, setShowCongrets] = useState(false);
+  const [deleteConfirm, setDeleteConfirm] = useState(false);
 
   /* 1️⃣  load from context (or 404) */
   useEffect(() => {
@@ -58,6 +62,7 @@ export default function TaskDetails() {
       // award points exactly once
       if (status === "Done" && task.status !== "Done" && !task.pointsAwarded) {
         updatePoints((task.points ?? 0) + 20);
+        setShowCongrets(true);
       }
 
       toast.success("Task updated!");
@@ -158,7 +163,7 @@ export default function TaskDetails() {
         {/* footer buttons */}
         <div className="mt-12 flex flex-col gap-4 md:flex-row md:justify-end">
           <button
-            onClick={handleDelete}
+            onClick={() => setDeleteConfirm(true)}
             className="inline-flex items-center justify-center gap-2 rounded bg-red-500/10 px-10 py-3 text-sm font-medium text-red-600 hover:bg-red-500/20"
           >
             <Trash2 size={16} /> Delete Task
@@ -173,6 +178,19 @@ export default function TaskDetails() {
           </button>
         </div>
       </section>
+
+
+      {/* Modals */}
+      <CongratulationsModal
+        open={showCongrets}
+        onClose={() => setShowCongrets(false)}
+      />
+
+      <DeleteConfirmModal
+        open={deleteConfirm}
+        onCancel={() => setDeleteConfirm(false)}
+        onConfirm={handleDelete}
+      />
     </>
   );
 }
