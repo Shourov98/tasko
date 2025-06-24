@@ -3,6 +3,7 @@ import { useState } from "react";
 import DashboardBanner from "@/components/DashboardBanner";
 import { useTasks } from "@/context/TaskContext";
 import TaskCard from "@/components/TaskCard";
+import Image from "next/image";
 
 export default function Dashboard() {
   const { list } = useTasks();          // ← replace with props you exposed
@@ -77,9 +78,16 @@ export default function Dashboard() {
               ))}
             </div>
           ) : (
-            <p className="flex h-full items-center justify-center text-sm text-textBody">
-              No tasks match the current filter.
-            </p>
+            <div className="flex h-full items-center justify-center">
+              <Image 
+              src="/emptyPage.png"
+              alt="No tasks illustration"
+              width={460}
+              height={400}
+              className="justify-center items-center"
+              priority
+              />
+            </div>
           )}
         </div>
       </section>
